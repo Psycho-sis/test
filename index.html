@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4K Gaming PC Builder - $2000 USD (Thailand)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        h2 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            color: #555;
+            font-size: 1.5em;
+        }
+        .component-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fafafa;
+        }
+        .component-section h3 {
+            margin-top: 0;
+            color: #333;
+            font-size: 1.2em;
+        }
+        .component-select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1em;
+            background-color: #fff;
+            cursor: pointer;
+        }
+        .component-details {
+            padding: 15px;
+            border-left: 4px solid #007bff;
+            background-color: #e9f7ff;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .component-details p {
+            margin: 5px 0;
+            line-height: 1.4;
+        }
+        .links a {
+            display: inline-block;
+            margin-right: 10px;
+            margin-top: 10px;
+            padding: 8px 15px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
+        .links a:hover {
+            background-color: #218838;
+        }
+        .price-estimate {
+            text-align: right;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #d4edda;
+            color: #155724;
+            border-radius: 8px;
+            border: 1px solid #c3e6cb;
+        }
+        .disclaimer {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            border-radius: 8px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>4K Gaming PC Build Guide (~$2000 USD)</h1>
+        <p style="text-align: center; margin-bottom: 30px; color: #666;">
+            A high-performance build optimized for 4K gaming within the budget. Prices are approximate estimates in Thai Baht (THB) and USD, based on current market rates in Thailand.
+        </p>
+
+        <div id="build-list">
+            <!-- Components will be rendered here -->
+        </div>
+
+        <div class="price-estimate">
+            Total Estimated Price: <span id="total-price-thb">0 THB</span> (<span id="total-price-usd">0 USD</span>)
+        </div>
+
+        <div class="disclaimer">
+            <strong>Disclaimer:</strong> Prices are estimates based on current Thai e-commerce listings and exchange rates (1 USD ≈ 36.5 THB) and are subject to change. Please check the provided links for the most accurate, up-to-date pricing and availability. The component selection prioritizes the Graphics Card (GPU) for the best 4K experience.
+        </div>
+    </div>
+
+    <script>
+        const USD_TO_THB_RATE = 36.5; // Approximate rate for Nov 2025
+
+        const componentsData = {
+            "GPU": {
+                title: "Graphics Card (GPU) - The 4K Powerhouse",
+                description: "The most critical component for 4K gaming. The RTX 4070 Ti SUPER offers excellent performance with DLSS 3 and Frame Generation.",
+                options: [
+                    {
+                        name: "NVIDIA RTX 4070 Ti SUPER 16GB",
+                        price_thb: 28000,
+                        specs: "16GB GDDR6X, Excellent 4K performance, DLSS 3/FG support.",
+                        links: [
+                            { platform: "JIB", url: "https://www.jib.co.th/web/product/readProduct/68806" },
+                            { platform: "Advice", url: "https://www.advice.co.th/product/graphic-card-vga-/nvidia-40-series/vga-gigabyte-geforce-rtx-4070-ti-super-gaming-oc-16gb-gddr6x" },
+                            { platform: "Shopee", url: "https://shopee.co.th/search?keyword=RTX%204070%20Ti%20SUPER" }
+                        ]
+                    },
+                    {
+                        name: "AMD Radeon RX 7900 XT 20GB (Alternative)",
+                        price_thb: 26500,
+                        specs: "20GB GDDR6, Great raw performance, better VRAM for high-res textures.",
+                        links: [
+                            { platform: "JIB", url: "https://www.jib.co.th/web/product/readProduct/60599" },
+                            { platform: "Advice", url: "https://www.advice.co.th/product/graphic-card-vga-/amd-7000-series/vga-sapphire-radeon-rx-7900-xt-pulse-20gb-gddr6" },
+                            { platform: "Lazada", url: "https://www.lazada.co.th/tag/rx-7900-xt/" }
+                        ]
+                    }
+                ]
+            },
+            "CPU": {
+                title: "Processor (CPU) - Best Gaming Value",
+                description: "The Ryzen 7 7800X3D is the current king of gaming CPUs, offering top-tier performance and efficiency for gaming.",
+                options: [
+                    {
+                        name: "AMD Ryzen 7 7800X3D",
+                        price_thb: 12500,
+                        specs: "8 Cores, 16 Threads, AMD 3D V-Cache Technology, AM5 Socket.",
+                        links: [
+                            { platform: "Advice", url: "https://www.advice.co.th/product/cpu/amd-am5/cpu-amd-ryzen-7-7800x3d-4-2ghz-8c-16t-socket-am5" },
+                            { platform: "JIB", url: "https://www.jib.co.th/web/product/readProduct/62150" },
+                            { platform: "Newegg (TH)", url: "https://www.newegg.com/global/th-en/amd-ryzen-7-7800x3d-ryzen-7-7000-series-raphael-zen-4-socket-am5/p/N82E16819113793" }
+                        ]
+                    },
+                    {
+                        name: "Intel Core i5-14600K (Alternative)",
+                        price_thb: 11000,
+                        specs: "14 Cores (6P+8E), 20 Threads, LGA 1700 Socket.",
+                        links: [
+                            { platform: "Advice", url: "https://www.advice.co.th/product/cpu/intel-lga-1700/cpu-intel-core-i5-14600k-3-5ghz-14c-20t-socket-lga-1700" },
+                            { platform: "JIB", url: "https://www.jib.co.th/web/product/readProduct/67078" },
+                            { platform: "Lazada", url: "https://www.lazada.co.th/tag/core-i5-14600k/" }
+                        ]
+                    }
+                ]
+            },
+            "Motherboard": {
+                title: "Motherboard (Mobo) - AM5 Platform",
+                description: "A reliable B650 board to support the Ryzen 7 7800X3D and DDR5 RAM.",
+                options: [
+                    {
+                        name: "Gigabyte B650 GAMING X AX V2",
+                        price_thb: 6500,
+                        specs: "AMD B650 Chipset, AM5 Socket, DDR5, Wi-Fi 6E, ATX Form Factor.",
+                        links: [
+                            { platform: "JIB", url: "https://www.jib.co.th/web/product/readProduct/66597" },
+                            { platform: "Advice", url: "https://www.advice.co.th/product/mainboard/amd-am5/mainboard-gigabyte-b650-gaming-x-ax-v2-socket-am5" },
+                            { platform: "Shopee", url: "https://shopee.co.th/search?keyword=B650%20GAMING%20X%20AX" }
+                        ]
+                    },
+                    {
+                        name: "ASUS TUF GAMING B650-PLUS WIFI (Alternative)",
+                        price_thb: 7000,
+                        specs: "AMD B650 Chipset, AM5 Socket, DDR5, Wi-Fi 6, ATX Form Factor.",
+                        links: [
+                            { platform: "Advice", url: "https://www.advice.co.th/product/mainboard/amd-am5/mainboard-asus-tuf-gaming-b650-plus-wifi-socket-am5" },
+                            { platform: "JIB", url: "https://www.jib.co.th/web/product/readProduct/59957" },
+                            { platform: "Lazada", url: "https://www.lazada.co.th/tag/tuf-gaming-b650-plus-wifi/" }
+                        ]
+                    }
+                ]
+            },
+            "RAM": {
+                title: "Memory (RAM) - High-Speed DDR5",
+                description: "32GB is the sweet spot for modern gaming. 6000MHz CL30 is the optimal speed for AMD Ryzen 7000 series.",
+                options: [
+                    {
+                        name: "32GB (2x16GB) DDR5 6000MHz CL30",
+                        price_thb: 4500,
+                        specs: "32GB Kit (2x16GB), 6000MHz, CL30 Low Latency, Ideal for AMD EXPO.",
+                        links: [
+                            { platform: "Advice", url: "https://www.advice.co.th/product/ram/ddr5/ram-ddr5-32gb-16gbx2-6000mhz-kingston-fury-renegade-rgb-cl32" },
+                            { platform: "Lazada", url: "https://www.lazada.co.th/tag/ram-ddr5-6000mhz-cl30/" },
+                            { platform: "Shopee", url: "https://shopee.co.th/search?keyword=DDR5%206000MHz%20CL30%2032GB" }
+                        ]
+                    }
+                ]
+            },
+            "Storage": {
+                title: "Storage (SSD) - Fast NVMe M.2",
+                description: "A 2TB Gen4 NVMe SSD provides ample space and lightning-fast loading times for games.",
+                options: [
+                    {
+                        name: "2TB NVMe PCIe 4.0 SSD (e.g., Crucial P5 Plus/Samsung 980 Pro)",
+                        price_thb: 4000,
+                        specs: "2TB Capacity, PCIe 4.0 Interface, Read speeds up to 7000MB/s.",
+                        links: [
+                            { platform: "JIB", url: "https://www.jib.co.th/web/product/readProduct/66605" },
+                            { platform: "Advice", url: "https://www.advice.co.th/product/solid-state-drive-ssd-/m-2-nvme-pcie-4-0/ssd-m-2-pcie-4-0-2tb-samsung-980-pro" },
+                            { platform: "Lazada", url: "https://www.lazada.co.th/tag/2tb-nvme-pcie-40/" }
+                        ]
+                    }
+                ]
+            },
+            "PSU": {
+                title: "Power Supply Unit (PSU) - Reliable Power",
+                description: "A high-quality 850W Gold-rated PSU ensures stable power delivery and efficiency for all components.",
+                options: [
+                    {
+                        name: "850W 80+ Gold Fully Modular (e.g., Corsair RM850e/Seasonic Focus GX)",
+                        price_thb: 3500,
+                        specs: "850W Wattage, 80 PLUS Gold Efficiency, Fully Modular Cables.",
+                        links: [
+                            { platform: "Advice", url: "https://www.advice.co.th/product/power-supply/850w/power-supply-850w-corsair-rm850e-80-plus-gold-fully-modular" },
+                            { platform: "JIB", url: "https://www.jib.co.th/web/product/readProduct/66787" },
+                            { platform: "Shopee", url: "https://shopee.co.th/search?keyword=850W%2080%2B%20Gold%20Modular" }
+                        ]
+                    }
+                ]
+            },
+            "Cooler": {
+                title: "CPU Cooler - Keeping it Chill",
+                description: "The 7800X3D is efficient, but a good air cooler or 240mm AIO is recommended for optimal performance and noise levels.",
+                options: [
+                    {
+                        name: "Thermalright Phantom Spirit 120 SE (Air Cooler)",
+                        price_thb: 1500,
+                        specs: "High-performance Dual Tower Air Cooler, Excellent value.",
+                        links: [
+                            { platform: "Lazada", url: "https://www.lazada.co.th/tag/thermalright-phantom-spirit-120-se/" },
+                            { platform: "Shopee", url: "https://shopee.co.th/search?keyword=Thermalright%20Phantom%20Spirit%20120%20SE" }
+                        ]
+                    },
+                    {
+                        name: "240mm AIO Liquid Cooler (Alternative)",
+                        price_thb: 3000,
+                        specs: "240mm All-In-One Liquid Cooler, Good aesthetics and cooling.",
+                        links: [
+                            { platform: "Advice", url: "https://www.advice.co.th/product/cpu-cooler/liquid-cooling-240mm" },
+                            { platform: "JIB", url: "https://www.jib.co.th/web/product/readProduct/67588" }
+                        ]
+                    }
+                ]
+            },
+            "Case": {
+                title: "Case (Chassis) - Airflow is Key",
+                description: "A mid-tower case with good airflow is essential to keep the powerful components cool.",
+                options: [
+                    {
+                        name: "Mid-Tower Case with High Airflow (e.g., Lian Li Lancool 216)",
+                        price_thb: 2500,
+                        specs: "Mid-Tower, Mesh Front Panel, Excellent Airflow, Supports large GPUs.",
+                        links: [
+                            { platform: "JIB", url: "https://www.jib.co.th/web/product/readProduct/61389" },
+                            { platform: "Advice", url: "https://www.advice.co.th/product/computer-case/mid-tower/case-lian-li-lancool-216-black" },
+                            { platform: "Lazada", url: "https://www.lazada.co.th/tag/lian-li-lancool-216/" }
+                        ]
+                    }
+                ]
+            }
+        };
+
+        function thbToUsd(thb) {
+            return (thb / USD_TO_THB_RATE).toFixed(2);
+        }
+
+        function renderBuildList() {
+            const buildList = document.getElementById('build-list');
+            buildList.innerHTML = '';
+            let totalTHB = 0;
+
+            for (const key in componentsData) {
+                const component = componentsData[key];
+                const defaultOption = component.options[0];
+                totalTHB += defaultOption.price_thb;
+
+                const section = document.createElement('div');
+                section.className = 'component-section';
+                section.innerHTML = `
+                    <h2>${component.title}</h2>
+                    <p style="margin-bottom: 15px; color: #666;">${component.description}</p>
+                    <select class="component-select" data-component-key="${key}" onchange="updateComponentDetails(this)">
+                        ${component.options.map((option, index) => `
+                            <option value="${index}" data-price-thb="${option.price_thb}">
+                                ${option.name} - ${option.price_thb.toLocaleString()} THB
+                            </option>
+                        `).join('')}
+                    </select>
+                    <div class="component-details" id="details-${key}">
+                        <!-- Details will be injected here -->
+                    </div>
+                `;
+                buildList.appendChild(section);
+            }
+
+            updateTotal(totalTHB);
+
+            // Initialize details for all components
+            for (const key in componentsData) {
+                const selectElement = document.querySelector(`[data-component-key="${key}"]`);
+                updateComponentDetails(selectElement);
+            }
+        }
+
+        function updateComponentDetails(selectElement) {
+            const key = selectElement.getAttribute('data-component-key');
+            const selectedIndex = selectElement.value;
+            const selectedOption = componentsData[key].options[selectedIndex];
+            const detailsDiv = document.getElementById(`details-${key}`);
+
+            detailsDiv.innerHTML = `
+                <h3>${selectedOption.name}</h3>
+                <p><strong>Specs:</strong> ${selectedOption.specs}</p>
+                <div class="links">
+                    <strong>Find in Thailand:</strong>
+                    ${selectedOption.links.map(link => `
+                        <a href="${link.url}" target="_blank" style="background-color: ${getPlatformColor(link.platform)};">${link.platform}</a>
+                    `).join('')}
+                </div>
+            `;
+
+            calculateTotal();
+        }
+
+        function getPlatformColor(platform) {
+            switch (platform) {
+                case 'JIB': return '#ff0000';
+                case 'Advice': return '#00a859';
+                case 'Lazada': return '#1a1a73';
+                case 'Shopee': return '#ee4d2d';
+                case 'Newegg (TH)': return '#f68a22';
+                default: return '#28a745';
+            }
+        }
+
+        function calculateTotal() {
+            let totalTHB = 0;
+            const selectElements = document.querySelectorAll('.component-select');
+
+            selectElements.forEach(select => {
+                const selectedOption = select.options[select.selectedIndex];
+                const priceTHB = parseInt(selectedOption.getAttribute('data-price-thb'));
+                totalTHB += priceTHB;
+            });
+
+            updateTotal(totalTHB);
+        }
+
+        function updateTotal(totalTHB) {
+            const totalUSD = thbToUsd(totalTHB);
+            document.getElementById('total-price-thb').textContent = totalTHB.toLocaleString() + ' THB';
+            document.getElementById('total-price-usd').textContent = totalUSD + ' USD';
+        }
+
+        document.addEventListener('DOMContentLoaded', renderBuildList);
+    </script>
+</body>
+</html>
